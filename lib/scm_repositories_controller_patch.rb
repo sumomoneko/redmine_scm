@@ -149,6 +149,19 @@ module ScmRepositoriesControllerPatch
             end
         end
 
+        def pickup_extra_info
+          p       = {}
+          p_extra = {}
+          params[:repository].each do |k, v|
+            if k =~ /^extra_/
+              p_extra[k] = v
+            else
+              p[k] = v
+            end
+          end
+          {:attrs => p, :attrs_extra => p_extra}
+        end
+
     end
 
 end
